@@ -1,0 +1,10 @@
+'use strict';
+
+var mlab = require('./config').mlab;
+
+module.exports = {
+  getDbConnection: function getDbConnection() {
+    return 'mongodb://' + mlab.uname + ':' + mlab.pwd + '@ds019886.mlab.com:19886/problemset';
+  }
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NlcnZlci9jb25maWcvaW5kZXguanMiXSwibmFtZXMiOlsibWxhYiIsInJlcXVpcmUiLCJtb2R1bGUiLCJleHBvcnRzIiwiZ2V0RGJDb25uZWN0aW9uIiwidW5hbWUiLCJwd2QiXSwibWFwcGluZ3MiOiJBQUFBOztBQUVBLElBQU1BLE9BQU9DLFFBQVEsVUFBUixFQUFvQkQsSUFBakM7O0FBRUFFLE9BQU9DLE9BQVAsR0FBaUI7QUFDZkMsbUJBQWlCLDJCQUFZO0FBQzNCLDBCQUFvQkosS0FBS0ssS0FBekIsU0FBa0NMLEtBQUtNLEdBQXZDO0FBQ0Q7QUFIYyxDQUFqQiIsImZpbGUiOiJpbmRleC5qcyIsInNvdXJjZXNDb250ZW50IjpbIid1c2Ugc3RyaWN0JztcblxuY29uc3QgbWxhYiA9IHJlcXVpcmUoJy4vY29uZmlnJykubWxhYjtcblxubW9kdWxlLmV4cG9ydHMgPSB7XG4gIGdldERiQ29ubmVjdGlvbjogZnVuY3Rpb24gKCkge1xuICAgIHJldHVybiBgbW9uZ29kYjovLyR7bWxhYi51bmFtZX06JHttbGFiLnB3ZH1AZHMwMTk4ODYubWxhYi5jb206MTk4ODYvcHJvYmxlbXNldGA7XG4gIH0sXG59O1xuIl19

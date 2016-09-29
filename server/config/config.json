@@ -1,0 +1,10 @@
+{
+  "admin": {
+    "user": "ikhsan@test.com",
+    "password": "1234567"
+  },
+  "mlab": {
+    "uname": "ikhsan",
+    "pwd": "ikhs4n"
+  }
+}
