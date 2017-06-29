@@ -1,19 +1,18 @@
 'use strict';
 
-var mlab = require('./config').mlab;
+const { mlab } = require('./config');
 
 module.exports = {
-  getDbConnection: function getDbConnection() {
-    return 'mongodb://' + mlab.uname + ':' + mlab.pwd + '@ds019886.mlab.com:19886/problemset';
+  getDbConnection() {
+    return `mongodb://${mlab.uname}:${mlab.pwd}@ds019886.mlab.com:19886/problemset`;
   },
-
   uploads: {
     gcsUpload: {
       bucket: 'multer-sharp.appspot.com', // Required : bucket name to upload
       projectId: 'multer-sharp', // Required : Google project ID
       keyFilename: 'server/config/firebase.auth.json', // Required : JSON credentials file for Google Cloud Storage
       destination: 'kontakplus/public', // Optional : destination folder to store your file for Google Cloud Storage, default: ''
-      acl: 'publicRead' }
-  }
+      acl: 'publicRead', // Required : acl credentials file for Google Cloud Storage, publicrRead or private, default: private
+    },
+  },
 };
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NlcnZlci9jb25maWcvaW5kZXguanMiXSwibmFtZXMiOlsibWxhYiIsInJlcXVpcmUiLCJtb2R1bGUiLCJleHBvcnRzIiwiZ2V0RGJDb25uZWN0aW9uIiwidW5hbWUiLCJwd2QiLCJ1cGxvYWRzIiwiZ2NzVXBsb2FkIiwiYnVja2V0IiwicHJvamVjdElkIiwia2V5RmlsZW5hbWUiLCJkZXN0aW5hdGlvbiIsImFjbCJdLCJtYXBwaW5ncyI6IkFBQUE7O0FBRUEsSUFBTUEsT0FBT0MsUUFBUSxVQUFSLEVBQW9CRCxJQUFqQzs7QUFFQUUsT0FBT0MsT0FBUCxHQUFpQjtBQUNmQyxpQkFEZSw2QkFDRztBQUNoQiwwQkFBb0JKLEtBQUtLLEtBQXpCLFNBQWtDTCxLQUFLTSxHQUF2QztBQUNELEdBSGM7O0FBSWZDLFdBQVM7QUFDUEMsZUFBVztBQUNUQyxjQUFRLDBCQURDLEVBQzJCO0FBQ3BDQyxpQkFBVyxjQUZGLEVBRWtCO0FBQzNCQyxtQkFBYSxrQ0FISixFQUd3QztBQUNqREMsbUJBQWEsbUJBSkosRUFJeUI7QUFDbENDLFdBQUssWUFMSTtBQURKO0FBSk0sQ0FBakIiLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIHN0cmljdCc7XG5cbmNvbnN0IG1sYWIgPSByZXF1aXJlKCcuL2NvbmZpZycpLm1sYWI7XG5cbm1vZHVsZS5leHBvcnRzID0ge1xuICBnZXREYkNvbm5lY3Rpb24oKSB7XG4gICAgcmV0dXJuIGBtb25nb2RiOi8vJHttbGFiLnVuYW1lfToke21sYWIucHdkfUBkczAxOTg4Ni5tbGFiLmNvbToxOTg4Ni9wcm9ibGVtc2V0YDtcbiAgfSxcbiAgdXBsb2Fkczoge1xuICAgIGdjc1VwbG9hZDoge1xuICAgICAgYnVja2V0OiAnbXVsdGVyLXNoYXJwLmFwcHNwb3QuY29tJywgLy8gUmVxdWlyZWQgOiBidWNrZXQgbmFtZSB0byB1cGxvYWRcbiAgICAgIHByb2plY3RJZDogJ211bHRlci1zaGFycCcsIC8vIFJlcXVpcmVkIDogR29vZ2xlIHByb2plY3QgSURcbiAgICAgIGtleUZpbGVuYW1lOiAnc2VydmVyL2NvbmZpZy9maXJlYmFzZS5hdXRoLmpzb24nLCAvLyBSZXF1aXJlZCA6IEpTT04gY3JlZGVudGlhbHMgZmlsZSBmb3IgR29vZ2xlIENsb3VkIFN0b3JhZ2VcbiAgICAgIGRlc3RpbmF0aW9uOiAna29udGFrcGx1cy9wdWJsaWMnLCAvLyBPcHRpb25hbCA6IGRlc3RpbmF0aW9uIGZvbGRlciB0byBzdG9yZSB5b3VyIGZpbGUgZm9yIEdvb2dsZSBDbG91ZCBTdG9yYWdlLCBkZWZhdWx0OiAnJ1xuICAgICAgYWNsOiAncHVibGljUmVhZCcsIC8vIFJlcXVpcmVkIDogYWNsIGNyZWRlbnRpYWxzIGZpbGUgZm9yIEdvb2dsZSBDbG91ZCBTdG9yYWdlLCBwdWJsaWNyUmVhZCBvciBwcml2YXRlLCBkZWZhdWx0OiBwcml2YXRlXG4gICAgfSxcbiAgfSxcbn07XG4iXX0=

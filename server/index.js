@@ -1,67 +1,45 @@
 'use strict';
 
-var _bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+const compression = require('compression');
+const cors = require('cors');
+const path = require('path');
+const express = require('express');
+const morgan = require('morgan');
+const helmet = require('helmet');
+const mongoose = require('mongoose');
+const errorhandler = require('errorhandler');
+const config = require('./config');
+const routes = require('./routes');
 
-var _bodyParser2 = _interopRequireDefault(_bodyParser);
-
-var _compression = require('compression');
-
-var _compression2 = _interopRequireDefault(_compression);
-
-var _path = require('path');
-
-var _path2 = _interopRequireDefault(_path);
-
-var _express = require('express');
-
-var _express2 = _interopRequireDefault(_express);
-
-var _morgan = require('morgan');
-
-var _morgan2 = _interopRequireDefault(_morgan);
-
-var _mongoose = require('mongoose');
-
-var _mongoose2 = _interopRequireDefault(_mongoose);
-
-var _errorhandler = require('errorhandler');
-
-var _errorhandler2 = _interopRequireDefault(_errorhandler);
-
-var _config = require('./config');
-
-var _config2 = _interopRequireDefault(_config);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+const corsConfig = {
+  origin: process.env.NODE_ENV === 'production' ? ['https://kontakplus.herokuapp.com', 'https://kontakplus.now.sh'] : '*',
+};
 
 // Mongodb Connection
-_mongoose2.default.Promise = global.Promise;
-_mongoose2.default.connect(_config2.default.getDbConnection()).then(function () {
-  return console.info('Connected to database');
-}) // eslint-disable-line no-console
-.catch(function (err) {
-  return console.error(err);
-}); // eslint-disable-line no-console
+mongoose.Promise = global.Promise;
+mongoose.connect(config.getDbConnection())
+  .then(() => console.info('Connected to database')) // eslint-disable-line no-console
+  .catch((err) => console.error(err)); // eslint-disable-line no-console
 
 // Application setup.
-var app = (0, _express2.default)();
-app.use(_bodyParser2.default.json());
-app.use(_bodyParser2.default.urlencoded({ extended: true }));
-app.use((0, _morgan2.default)('dev'));
-app.use((0, _compression2.default)());
+const app = express();
+app.use(helmet());
+app.use(cors(corsConfig));
+app.use(morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'tiny'));
+app.use(compression());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('PORT', process.env.PORT || 3000);
 
-var clientPath = _path2.default.join(__dirname, '/../client');
-if (process.env.NODE_ENV === 'development') app.use((0, _errorhandler2.default)());
-app.use(_express2.default.static(clientPath));
-app.get('/contacts/*', function (req, res) {
-  return res.sendFile(_path2.default.join(__dirname, '/../client/index.html'));
-});
-app.use('/api/contacts', require('./routes'));
+const clientPath = path.join(__dirname, '/../client');
+if (process.env.NODE_ENV === 'development') app.use(errorhandler());
+app.use(express.static(clientPath));
+app.get('/contacts/*', (req, res) => res.sendFile(path.join(__dirname, '/../client/index.html')));
+app.use('/api/contacts', routes);
 
-app.listen(app.get('PORT'), function () {
-  console.log('Our app listening on port ' + app.get('PORT') + '!'); // eslint-disable-line no-console
+app.listen(app.get('PORT'), () => {
+  console.log(`Our app listening on port ${app.get('PORT')}!`); // eslint-disable-line no-console
 });
 
 module.exports = app;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NlcnZlci9pbmRleC5qcyJdLCJuYW1lcyI6WyJQcm9taXNlIiwiZ2xvYmFsIiwiY29ubmVjdCIsImdldERiQ29ubmVjdGlvbiIsInRoZW4iLCJjb25zb2xlIiwiaW5mbyIsImNhdGNoIiwiZXJyIiwiZXJyb3IiLCJhcHAiLCJ1c2UiLCJqc29uIiwidXJsZW5jb2RlZCIsImV4dGVuZGVkIiwic2V0IiwicHJvY2VzcyIsImVudiIsIlBPUlQiLCJjbGllbnRQYXRoIiwiam9pbiIsIl9fZGlybmFtZSIsIk5PREVfRU5WIiwic3RhdGljIiwiZ2V0IiwicmVxIiwicmVzIiwic2VuZEZpbGUiLCJyZXF1aXJlIiwibGlzdGVuIiwibG9nIiwibW9kdWxlIiwiZXhwb3J0cyJdLCJtYXBwaW5ncyI6Ijs7QUFBQTs7OztBQUNBOzs7O0FBQ0E7Ozs7QUFDQTs7OztBQUNBOzs7O0FBQ0E7Ozs7QUFDQTs7OztBQUNBOzs7Ozs7QUFFQTtBQUNBLG1CQUFTQSxPQUFULEdBQW1CQyxPQUFPRCxPQUExQjtBQUNBLG1CQUFTRSxPQUFULENBQWlCLGlCQUFPQyxlQUFQLEVBQWpCLEVBQ0dDLElBREgsQ0FDUTtBQUFBLFNBQU1DLFFBQVFDLElBQVIsQ0FBYSx1QkFBYixDQUFOO0FBQUEsQ0FEUixFQUNxRDtBQURyRCxDQUVHQyxLQUZILENBRVMsVUFBQ0MsR0FBRDtBQUFBLFNBQVNILFFBQVFJLEtBQVIsQ0FBY0QsR0FBZCxDQUFUO0FBQUEsQ0FGVCxFLENBRXVDOztBQUV2QztBQUNBLElBQU1FLE1BQU0sd0JBQVo7QUFDQUEsSUFBSUMsR0FBSixDQUFRLHFCQUFXQyxJQUFYLEVBQVI7QUFDQUYsSUFBSUMsR0FBSixDQUFRLHFCQUFXRSxVQUFYLENBQXNCLEVBQUVDLFVBQVUsSUFBWixFQUF0QixDQUFSO0FBQ0FKLElBQUlDLEdBQUosQ0FBUSxzQkFBTyxLQUFQLENBQVI7QUFDQUQsSUFBSUMsR0FBSixDQUFRLDRCQUFSO0FBQ0FELElBQUlLLEdBQUosQ0FBUSxNQUFSLEVBQWdCQyxRQUFRQyxHQUFSLENBQVlDLElBQVosSUFBb0IsSUFBcEM7O0FBRUEsSUFBTUMsYUFBYSxlQUFLQyxJQUFMLENBQVVDLFNBQVYsRUFBcUIsWUFBckIsQ0FBbkI7QUFDQSxJQUFJTCxRQUFRQyxHQUFSLENBQVlLLFFBQVosS0FBeUIsYUFBN0IsRUFBNENaLElBQUlDLEdBQUosQ0FBUSw2QkFBUjtBQUM1Q0QsSUFBSUMsR0FBSixDQUFRLGtCQUFRWSxNQUFSLENBQWVKLFVBQWYsQ0FBUjtBQUNBVCxJQUFJYyxHQUFKLENBQVEsYUFBUixFQUF1QixVQUFDQyxHQUFELEVBQU1DLEdBQU47QUFBQSxTQUFjQSxJQUFJQyxRQUFKLENBQWEsZUFBS1AsSUFBTCxDQUFVQyxTQUFWLEVBQXFCLHVCQUFyQixDQUFiLENBQWQ7QUFBQSxDQUF2QjtBQUNBWCxJQUFJQyxHQUFKLENBQVEsZUFBUixFQUF5QmlCLFFBQVEsVUFBUixDQUF6Qjs7QUFFQWxCLElBQUltQixNQUFKLENBQVduQixJQUFJYyxHQUFKLENBQVEsTUFBUixDQUFYLEVBQTRCLFlBQU07QUFDaENuQixVQUFReUIsR0FBUixnQ0FBeUNwQixJQUFJYyxHQUFKLENBQVEsTUFBUixDQUF6QyxRQURnQyxDQUM4QjtBQUMvRCxDQUZEOztBQUlBTyxPQUFPQyxPQUFQLEdBQWlCdEIsR0FBakIiLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgYm9keVBhcnNlciBmcm9tICdib2R5LXBhcnNlcic7XG5pbXBvcnQgY29tcHJlc3Npb24gZnJvbSAnY29tcHJlc3Npb24nO1xuaW1wb3J0IHBhdGggZnJvbSAncGF0aCc7XG5pbXBvcnQgZXhwcmVzcyBmcm9tICdleHByZXNzJztcbmltcG9ydCBtb3JnYW4gZnJvbSAnbW9yZ2FuJztcbmltcG9ydCBtb25nb29zZSBmcm9tICdtb25nb29zZSc7XG5pbXBvcnQgZXJyb3JoYW5kbGVyIGZyb20gJ2Vycm9yaGFuZGxlcic7XG5pbXBvcnQgY29uZmlnIGZyb20gJy4vY29uZmlnJztcblxuLy8gTW9uZ29kYiBDb25uZWN0aW9uXG5tb25nb29zZS5Qcm9taXNlID0gZ2xvYmFsLlByb21pc2U7XG5tb25nb29zZS5jb25uZWN0KGNvbmZpZy5nZXREYkNvbm5lY3Rpb24oKSlcbiAgLnRoZW4oKCkgPT4gY29uc29sZS5pbmZvKCdDb25uZWN0ZWQgdG8gZGF0YWJhc2UnKSkgLy8gZXNsaW50LWRpc2FibGUtbGluZSBuby1jb25zb2xlXG4gIC5jYXRjaCgoZXJyKSA9PiBjb25zb2xlLmVycm9yKGVycikpOyAvLyBlc2xpbnQtZGlzYWJsZS1saW5lIG5vLWNvbnNvbGVcblxuLy8gQXBwbGljYXRpb24gc2V0dXAuXG5jb25zdCBhcHAgPSBleHByZXNzKCk7XG5hcHAudXNlKGJvZHlQYXJzZXIuanNvbigpKTtcbmFwcC51c2UoYm9keVBhcnNlci51cmxlbmNvZGVkKHsgZXh0ZW5kZWQ6IHRydWUgfSkpO1xuYXBwLnVzZShtb3JnYW4oJ2RldicpKTtcbmFwcC51c2UoY29tcHJlc3Npb24oKSk7XG5hcHAuc2V0KCdQT1JUJywgcHJvY2Vzcy5lbnYuUE9SVCB8fCAzMDAwKTtcblxuY29uc3QgY2xpZW50UGF0aCA9IHBhdGguam9pbihfX2Rpcm5hbWUsICcvLi4vY2xpZW50Jyk7XG5pZiAocHJvY2Vzcy5lbnYuTk9ERV9FTlYgPT09ICdkZXZlbG9wbWVudCcpIGFwcC51c2UoZXJyb3JoYW5kbGVyKCkpO1xuYXBwLnVzZShleHByZXNzLnN0YXRpYyhjbGllbnRQYXRoKSk7XG5hcHAuZ2V0KCcvY29udGFjdHMvKicsIChyZXEsIHJlcykgPT4gcmVzLnNlbmRGaWxlKHBhdGguam9pbihfX2Rpcm5hbWUsICcvLi4vY2xpZW50L2luZGV4Lmh0bWwnKSkpO1xuYXBwLnVzZSgnL2FwaS9jb250YWN0cycsIHJlcXVpcmUoJy4vcm91dGVzJykpO1xuXG5hcHAubGlzdGVuKGFwcC5nZXQoJ1BPUlQnKSwgKCkgPT4ge1xuICBjb25zb2xlLmxvZyhgT3VyIGFwcCBsaXN0ZW5pbmcgb24gcG9ydCAke2FwcC5nZXQoJ1BPUlQnKX0hYCk7IC8vIGVzbGludC1kaXNhYmxlLWxpbmUgbm8tY29uc29sZVxufSk7XG5cbm1vZHVsZS5leHBvcnRzID0gYXBwO1xuIl19

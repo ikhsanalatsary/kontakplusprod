@@ -1,14 +1,10 @@
 'use strict';
 
-var _mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var _mongoose2 = _interopRequireDefault(_mongoose);
+const Schema = mongoose.Schema;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Schema = _mongoose2.default.Schema;
-
-var contactSchema = new Schema({
+const ContactSchema = new Schema({
   name: { type: String, required: true, default: '' },
   title: { type: String, default: '' },
   email: { type: Array, default: [] },
@@ -18,16 +14,16 @@ var contactSchema = new Schema({
   avatar: { type: String, default: '' },
   favorite: { type: Boolean, default: false },
   created: { type: Date, default: Date.now },
-  updated: Date
+  updated: Date,
 });
 
-contactSchema.pre('save', function pre(next) {
-  if (this.isNew) return next();
-  this.updated = Date.now();
-  return next();
-});
+ContactSchema
+  .pre('save', function pre(next) {
+    if (this.isNew) return next();
+    this.updated = Date.now();
+    return next();
+  });
 
-var Contacts = _mongoose2.default.model('Contacts', contactSchema);
+const Contact = mongoose.model('Contacts', ContactSchema);
 
-module.exports = Contacts;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NlcnZlci9tb2RlbC9jb250YWN0cy5tb2RlbC5qcyJdLCJuYW1lcyI6WyJTY2hlbWEiLCJjb250YWN0U2NoZW1hIiwibmFtZSIsInR5cGUiLCJTdHJpbmciLCJyZXF1aXJlZCIsImRlZmF1bHQiLCJ0aXRsZSIsImVtYWlsIiwiQXJyYXkiLCJwaG9uZSIsImFkZHJlc3MiLCJjb21wYW55IiwiYXZhdGFyIiwiZmF2b3JpdGUiLCJCb29sZWFuIiwiY3JlYXRlZCIsIkRhdGUiLCJub3ciLCJ1cGRhdGVkIiwicHJlIiwibmV4dCIsImlzTmV3IiwiQ29udGFjdHMiLCJtb2RlbCIsIm1vZHVsZSIsImV4cG9ydHMiXSwibWFwcGluZ3MiOiI7O0FBQUE7Ozs7OztBQUVBLElBQU1BLFNBQVMsbUJBQVNBLE1BQXhCOztBQUVBLElBQU1DLGdCQUFnQixJQUFJRCxNQUFKLENBQVc7QUFDL0JFLFFBQU0sRUFBRUMsTUFBTUMsTUFBUixFQUFnQkMsVUFBVSxJQUExQixFQUFnQ0MsU0FBUyxFQUF6QyxFQUR5QjtBQUUvQkMsU0FBTyxFQUFFSixNQUFNQyxNQUFSLEVBQWdCRSxTQUFTLEVBQXpCLEVBRndCO0FBRy9CRSxTQUFPLEVBQUVMLE1BQU1NLEtBQVIsRUFBZUgsU0FBUyxFQUF4QixFQUh3QjtBQUkvQkksU0FBTyxFQUFFUCxNQUFNTSxLQUFSLEVBQWVILFNBQVMsRUFBeEIsRUFKd0I7QUFLL0JLLFdBQVMsRUFBRVIsTUFBTU0sS0FBUixFQUFlSCxTQUFTLEVBQXhCLEVBTHNCO0FBTS9CTSxXQUFTLEVBQUVULE1BQU1DLE1BQVIsRUFBZ0JFLFNBQVMsRUFBekIsRUFOc0I7QUFPL0JPLFVBQVEsRUFBRVYsTUFBTUMsTUFBUixFQUFnQkUsU0FBUyxFQUF6QixFQVB1QjtBQVEvQlEsWUFBVSxFQUFFWCxNQUFNWSxPQUFSLEVBQWlCVCxTQUFTLEtBQTFCLEVBUnFCO0FBUy9CVSxXQUFTLEVBQUViLE1BQU1jLElBQVIsRUFBY1gsU0FBU1csS0FBS0MsR0FBNUIsRUFUc0I7QUFVL0JDLFdBQVNGO0FBVnNCLENBQVgsQ0FBdEI7O0FBYUFoQixjQUNHbUIsR0FESCxDQUNPLE1BRFAsRUFDZSxTQUFTQSxHQUFULENBQWFDLElBQWIsRUFBbUI7QUFDOUIsTUFBSSxLQUFLQyxLQUFULEVBQWdCLE9BQU9ELE1BQVA7QUFDaEIsT0FBS0YsT0FBTCxHQUFlRixLQUFLQyxHQUFMLEVBQWY7QUFDQSxTQUFPRyxNQUFQO0FBQ0QsQ0FMSDs7QUFPQSxJQUFNRSxXQUFXLG1CQUFTQyxLQUFULENBQWUsVUFBZixFQUEyQnZCLGFBQTNCLENBQWpCOztBQUVBd0IsT0FBT0MsT0FBUCxHQUFpQkgsUUFBakIiLCJmaWxlIjoiY29udGFjdHMubW9kZWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgbW9uZ29vc2UgZnJvbSAnbW9uZ29vc2UnO1xuXG5jb25zdCBTY2hlbWEgPSBtb25nb29zZS5TY2hlbWE7XG5cbmNvbnN0IGNvbnRhY3RTY2hlbWEgPSBuZXcgU2NoZW1hKHtcbiAgbmFtZTogeyB0eXBlOiBTdHJpbmcsIHJlcXVpcmVkOiB0cnVlLCBkZWZhdWx0OiAnJyB9LFxuICB0aXRsZTogeyB0eXBlOiBTdHJpbmcsIGRlZmF1bHQ6ICcnIH0sXG4gIGVtYWlsOiB7IHR5cGU6IEFycmF5LCBkZWZhdWx0OiBbXSB9LFxuICBwaG9uZTogeyB0eXBlOiBBcnJheSwgZGVmYXVsdDogW10gfSxcbiAgYWRkcmVzczogeyB0eXBlOiBBcnJheSwgZGVmYXVsdDogW10gfSxcbiAgY29tcGFueTogeyB0eXBlOiBTdHJpbmcsIGRlZmF1bHQ6ICcnIH0sXG4gIGF2YXRhcjogeyB0eXBlOiBTdHJpbmcsIGRlZmF1bHQ6ICcnIH0sXG4gIGZhdm9yaXRlOiB7IHR5cGU6IEJvb2xlYW4sIGRlZmF1bHQ6IGZhbHNlIH0sXG4gIGNyZWF0ZWQ6IHsgdHlwZTogRGF0ZSwgZGVmYXVsdDogRGF0ZS5ub3cgfSxcbiAgdXBkYXRlZDogRGF0ZSxcbn0pO1xuXG5jb250YWN0U2NoZW1hXG4gIC5wcmUoJ3NhdmUnLCBmdW5jdGlvbiBwcmUobmV4dCkge1xuICAgIGlmICh0aGlzLmlzTmV3KSByZXR1cm4gbmV4dCgpO1xuICAgIHRoaXMudXBkYXRlZCA9IERhdGUubm93KCk7XG4gICAgcmV0dXJuIG5leHQoKTtcbiAgfSk7XG5cbmNvbnN0IENvbnRhY3RzID0gbW9uZ29vc2UubW9kZWwoJ0NvbnRhY3RzJywgY29udGFjdFNjaGVtYSk7XG5cbm1vZHVsZS5leHBvcnRzID0gQ29udGFjdHM7XG4iXX0=
+module.exports = Contact;

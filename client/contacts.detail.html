@@ -1,0 +1,74 @@
+<header md-page-header>
+  <div md-header-picture>
+    <img ng-src="{{vm.contact.avatar || 'uploads/Profile-img.jpg'}}" alt="" />
+  </div>
+  <md-toolbar scroll>
+    <div class="md-toolbar-tools">
+      <md-button ng-click="vm.goBack()" class="md-tools mini" aria-label="Go Back">
+        <md-icon md-font-set="material-icons">arrow_back</md-icon>
+      </md-button>
+      <h2 md-header-title flex>{{vm.contact.name}}</h2>
+      <md-button ui-sref="contacts.edit({ _id: vm.contact._id })" class="md-tools mini" aria-label="Edit Contact">
+        <md-icon md-font-set="material-icons">edit</md-icon>
+      </md-button>
+      <md-button ng-click="vm.removeContact(vm.contact._id)" class="md-tools mini" aria-label="Delete Contact">
+        <md-icon class="md-warn md-secondary" md-font-set="material-icons">delete</md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <div class="main-fab">
+    <md-button md-font-set="material-icons" aria-label="Float Action Button" class="md-fab md-accent">
+     <input type="checkbox" class="star" aria-label="favorite" ng-model="vm.contact.favorite" ng-change="vm.addFavorite(vm.contact.favorite)">
+    </md-button>
+  </div>
+</header>
+<br><br><br>
+<section id="page-section">
+  <md-content flex layout-padding>
+    <md-list class="fixedRows">
+      <md-list-item ng-repeat="phone in vm.contact.phone" class="md-3-line contact-item noright">
+        <md-icon ng-if="vm.contact.phone" class="md-primary md-hue-2 left"
+          md-font-set="material-icons">phone</md-icon>
+        <div class="md-tile-content">
+          <h3>{{phone.number}}</h3>
+          <p class="muted">{{phone.option}}</p>
+        </div>
+      </md-list-item>
+      <md-divider ng-if="vm.contact.phone"></md-divider>
+      <md-list-item>
+        <md-icon ng-if="vm.contact.title" class="md-primary md-hue-2 left"
+          md-font-set="material-icons">title</md-icon>
+        <div class="md-tile-content">
+          <h3>{{vm.contact.title}}</h3>
+        </div>
+      </md-list-item>
+      <md-divider ng-if="vm.contact.title"></md-divider>
+      <md-list-item ng-repeat="e in vm.contact.email" class="md-3-line contact-item noright">
+        <md-icon ng-if="vm.contact.email" class="md-primary md-hue-2 left"
+          md-font-set="material-icons">email</md-icon>
+        <div class="md-tile-content">
+          <h3>{{e.email}}</h3>
+          <p class="muted">{{e.option}}</p>
+        </div>
+      </md-list-item>
+      <md-divider ng-if="vm.contact.email"></md-divider>
+      <md-list-item ng-repeat="adrs in vm.contact.address" class="md-3-line contact-item noright">
+        <md-icon ng-if="vm.contact.address" class="md-primary md-hue-2 left"
+          md-font-set="material-icons">room</md-icon>
+        <div class="md-tile-content">
+          <h3>{{adrs.address}}</h3>
+          <p class="muted">{{adrs.option}}</p>
+        </div>
+      </md-list-item>
+      <md-divider ng-if="vm.contact.address"></md-divider>
+      <md-list-item>
+        <md-icon ng-if="vm.contact.company" class="md-primary md-hue-2 left"
+          md-font-set="material-icons">work</md-icon>
+        <div class="md-tile-content">
+          <h3>{{vm.contact.company}}</h3>
+        </div>
+      </md-list-item>
+      <md-divider ng-if="vm.contact.company"></md-divider>
+    </md-list>
+  </md-content>
+</section>

@@ -1,27 +1,18 @@
 'use strict';
 
-var _express = require('express');
+const { Router } = require('express');
+const basicAuth = require('./middleware');
+const { create, deletes, index, patch, show, update, upload } = require('./controller/contacts.controller');
 
-var _middleware = require('./middleware');
+const router = Router();
 
-var _middleware2 = _interopRequireDefault(_middleware);
-
-var _contacts = require('./controller/contacts.controller');
-
-var _contacts2 = _interopRequireDefault(_contacts);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var router = (0, _express.Router)();
-
-router.use(_middleware2.default);
-router.get('/', _contacts2.default.index);
-router.get('/:id', _contacts2.default.show);
-router.post('/', _contacts2.default.create);
-router.post('/upload', _contacts2.default.upload);
-router.put('/:id', _contacts2.default.update);
-router.patch('/:id', _contacts2.default.patch);
-router.delete('/:id', _contacts2.default.delete);
+router.use(basicAuth);
+router.get('/', index);
+router.get('/:id', show);
+router.post('/', create);
+router.post('/upload', upload);
+router.put('/:id', update);
+router.patch('/:id', patch);
+router.delete('/:id', deletes);
 
 module.exports = router;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NlcnZlci9yb3V0ZXMuanMiXSwibmFtZXMiOlsicm91dGVyIiwidXNlIiwiZ2V0IiwiaW5kZXgiLCJzaG93IiwicG9zdCIsImNyZWF0ZSIsInVwbG9hZCIsInB1dCIsInVwZGF0ZSIsInBhdGNoIiwiZGVsZXRlIiwibW9kdWxlIiwiZXhwb3J0cyJdLCJtYXBwaW5ncyI6Ijs7QUFBQTs7QUFDQTs7OztBQUNBOzs7Ozs7QUFFQSxJQUFNQSxTQUFTLHNCQUFmOztBQUVBQSxPQUFPQyxHQUFQO0FBQ0FELE9BQU9FLEdBQVAsQ0FBVyxHQUFYLEVBQWdCLG1CQUFXQyxLQUEzQjtBQUNBSCxPQUFPRSxHQUFQLENBQVcsTUFBWCxFQUFtQixtQkFBV0UsSUFBOUI7QUFDQUosT0FBT0ssSUFBUCxDQUFZLEdBQVosRUFBaUIsbUJBQVdDLE1BQTVCO0FBQ0FOLE9BQU9LLElBQVAsQ0FBWSxTQUFaLEVBQXVCLG1CQUFXRSxNQUFsQztBQUNBUCxPQUFPUSxHQUFQLENBQVcsTUFBWCxFQUFtQixtQkFBV0MsTUFBOUI7QUFDQVQsT0FBT1UsS0FBUCxDQUFhLE1BQWIsRUFBcUIsbUJBQVdBLEtBQWhDO0FBQ0FWLE9BQU9XLE1BQVAsQ0FBYyxNQUFkLEVBQXNCLG1CQUFXQSxNQUFqQzs7QUFFQUMsT0FBT0MsT0FBUCxHQUFpQmIsTUFBakIiLCJmaWxlIjoicm91dGVzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgUm91dGVyIH0gZnJvbSAnZXhwcmVzcyc7XG5pbXBvcnQgYmFzaWNBdXRoIGZyb20gJy4vbWlkZGxld2FyZSc7XG5pbXBvcnQgY29udHJvbGxlciBmcm9tICcuL2NvbnRyb2xsZXIvY29udGFjdHMuY29udHJvbGxlcic7XG5cbmNvbnN0IHJvdXRlciA9IFJvdXRlcigpO1xuXG5yb3V0ZXIudXNlKGJhc2ljQXV0aCk7XG5yb3V0ZXIuZ2V0KCcvJywgY29udHJvbGxlci5pbmRleCk7XG5yb3V0ZXIuZ2V0KCcvOmlkJywgY29udHJvbGxlci5zaG93KTtcbnJvdXRlci5wb3N0KCcvJywgY29udHJvbGxlci5jcmVhdGUpO1xucm91dGVyLnBvc3QoJy91cGxvYWQnLCBjb250cm9sbGVyLnVwbG9hZCk7XG5yb3V0ZXIucHV0KCcvOmlkJywgY29udHJvbGxlci51cGRhdGUpO1xucm91dGVyLnBhdGNoKCcvOmlkJywgY29udHJvbGxlci5wYXRjaCk7XG5yb3V0ZXIuZGVsZXRlKCcvOmlkJywgY29udHJvbGxlci5kZWxldGUpO1xuXG5tb2R1bGUuZXhwb3J0cyA9IHJvdXRlcjtcbiJdfQ==

@@ -1,0 +1,83 @@
+<md-toolbar class="md-primary">
+  <div ng-if="!$this.search" class="md-toolbar-tools">
+    <h2 class="md-flex">Kontak++</h2>
+    <span flex></span>
+    <md-button ng-if="!$this.search" aria-label="Search" ng-click="$this.searchBtn()">
+      <md-tooltip md-direction="left">
+        Search
+      </md-tooltip>
+      <md-icon md-font-set="material-icons"> search </md-icon>
+    </md-button>
+    <md-input-container ng-if="$this.search" class="md-block search-container" flex>
+      <input ng-model="$this.searchContact" class="input-search" placeholder="Search">
+      <md-icon class="md-warn search" ng-click="$this.removeSearch()" md-font-set="material-icons"> close </md-icon>
+    </md-input-container>
+  </div>
+  <div ng-if="$this.search" class="md-toolbar-tools">
+    <md-button ng-if="$this.search" ng-click="$this.removeSearch()" class="md-tools mini" aria-label="Go Back">
+      <md-icon md-font-set="material-icons">arrow_back</md-icon>
+    </md-button>
+    <!-- <span flex></span> -->
+    <md-input-container class="md-block search-container" flex>
+      <input ng-model="$this.searchContact" class="input-search" placeholder="Search">
+      <md-icon class="md-warn search" ng-click="$this.removeSearch()" md-font-set="material-icons"> close </md-icon>
+    </md-input-container>
+  </div>
+</md-toolbar>
+<md-button ng-click="$this.newContact()" class="md-fab md-fab-bottom-right md-accent md-hue-2 fixed" aria-label="Person">
+  <md-tooltip md-direction="left">
+    Create Contact
+  </md-tooltip>
+  <md-icon md-font-set="material-icons">person_add</md-icon>
+</md-button>
+<md-button ng-if="$this.superhero.length > 1" ng-click="$this.deleteAll()"
+  class="md-fab md-fab-bottom-right md-warn fixed" aria-label="Delete All">
+  <md-tooltip md-direction="left">
+    Delete All
+  </md-tooltip>
+  <md-icon md-font-set="material-icons">delete</md-icon>
+</md-button>
+<md-content>
+  <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
+    <md-tab label="All Contacts">
+      <md-content md-scroll-y class="md-padding">
+        <md-list class="fixedRows">
+          <md-subheader class="md-no-sticky">
+            <md-checkbox aria-label="Select All" ng-model="$this.value" ng-change="$this.checkAll($this.value)"></md-checkbox>
+            Contacts
+          </md-subheader>
+          <div class="" ng-if="$this.superhero.length >= 1">
+            <md-subheader layout="coloumn" layout-align="end center" class="md-primary" ng-if="$this.superhero.length >= 1">
+              <small>{{$this.superhero.length}} contact(s) selected</small>
+            </md-subheader>
+          </div>
+          <md-list-item class="md-2-line contact-item noright" ng-repeat="(index, contact) in $this.contacts | filter: $this.searchContact"
+            ng-click="$this.goDetail(contact._id)">
+            <img ng-src="{{contact.avatar || 'uploads/default-img.png'}}" class="md-avatar" alt="{{contact.name}}" />
+              <p>{{contact.name}}</p>
+            <md-checkbox class="md-secondary" aria-label="Select" checklist-model="$this.superhero" checklist-value="contact._id"></md-checkbox>
+            <md-divider ng-if="!$last"></md-divider>
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </md-tab>
+    <md-tab label="favorite">
+      <md-content md-scroll-y class="md-padding">
+        <md-list class="fixedRows">
+          <md-subheader class="md-no-sticky">
+            Contacts Favorite
+          </md-subheader>
+          <p ng-if="!$this.confav">
+            You have no favorite contact
+          </p>
+          <md-list-item ng-if="$this.confav" class="md-2-line contact-item noright" ng-repeat="(index, confav) in $this.confav | filter: $this.searchContact"
+            ng-click="$this.goDetail(confav._id)">
+            <img ng-src="{{confav.avatar || 'uploads/default-img.png'}}" class="md-avatar" alt="{{confav.name}}" />
+              <p>{{confav.name}}</p>
+            <md-divider ng-if="!$last"></md-divider>
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </md-tab>
+  </md-tabs>
+</md-content>

@@ -1,0 +1,381 @@
+[
+  {
+    "_id": "1",
+    "__v": 0,
+    "created": "2016-09-23T23:19:27.045Z",
+    "favorite": false,
+    "avatar": "",
+    "company": "Goldner-Dach",
+    "address": [
+      {
+        "option": "Home",
+        "address": "9395 Alverta Rue"
+      },
+      {
+        "option": "Home",
+        "address": "6252 Otis Fall"
+      }
+    ],
+    "phone": [
+      {
+        "option": "Mobile",
+        "number": "(210)562-9426 x084"
+      },
+      {
+        "option": "Mobile",
+        "number": "(880)185-5482 x6702"
+      }
+    ],
+    "email": [
+      {
+        "option": "",
+        "email": "Haskell@sylvan.name"
+      },
+      {
+        "option": "",
+        "email": "Ella.Robel@zion.net"
+      }
+    ],
+    "title": "My Love",
+    "name": "Aaliyah Roberts"
+  },
+  {
+    "_id": "2",
+    "__v": 0,
+    "created": "2016-09-23T23:19:26.753Z",
+    "favorite": false,
+    "avatar": "",
+    "company": "Goldner-Dach",
+    "address": [
+      {
+        "option": "Home",
+        "address": "9395 Alverta Rue"
+      },
+      {
+        "option": "Home",
+        "address": "6252 Otis Fall"
+      }
+    ],
+    "phone": [
+      {
+        "option": "Mobile",
+        "number": "(210)562-9426 x084"
+      },
+      {
+        "option": "Mobile",
+        "number": "(880)185-5482 x6702"
+      }
+    ],
+    "email": [
+      {
+        "option": "",
+        "email": "Haskell@sylvan.name"
+      },
+      {
+        "option": "",
+        "email": "Ella.Robel@zion.net"
+      }
+    ],
+    "title": "My Love",
+    "name": "Aaliyah Roberts"
+  },
+  {
+    "_id": "3",
+    "__v": 0,
+    "created": "2016-09-23T23:19:26.113Z",
+    "favorite": false,
+    "avatar": "",
+    "company": "Goldner-Dach",
+    "address": [
+      {
+        "option": "Home",
+        "address": "9395 Alverta Rue"
+      },
+      {
+        "option": "Home",
+        "address": "6252 Otis Fall"
+      }
+    ],
+    "phone": [
+      {
+        "option": "Mobile",
+        "number": "(210)562-9426 x084"
+      },
+      {
+        "option": "Mobile",
+        "number": "(880)185-5482 x6702"
+      }
+    ],
+    "email": [
+      {
+        "option": "",
+        "email": "Haskell@sylvan.name"
+      },
+      {
+        "option": "",
+        "email": "Ella.Robel@zion.net"
+      }
+    ],
+    "title": "My Love",
+    "name": "Aaliyah Roberts"
+  },
+  {
+    "_id": "4",
+    "__v": 0,
+    "created": "2016-09-23T23:19:24.528Z",
+    "favorite": false,
+    "avatar": "",
+    "company": "Goldner-Dach",
+    "address": [
+      {
+        "option": "Home",
+        "address": "9395 Alverta Rue"
+      },
+      {
+        "option": "Home",
+        "address": "6252 Otis Fall"
+      }
+    ],
+    "phone": [
+      {
+        "option": "Mobile",
+        "number": "(210)562-9426 x084"
+      },
+      {
+        "option": "Mobile",
+        "number": "(880)185-5482 x6702"
+      }
+    ],
+    "email": [
+      {
+        "option": "",
+        "email": "Haskell@sylvan.name"
+      },
+      {
+        "option": "",
+        "email": "Ella.Robel@zion.net"
+      }
+    ],
+    "title": "My Love",
+    "name": "Aaliyah Roberts"
+  },
+  {
+    "_id": "5",
+    "__v": 0,
+    "updated": "2016-09-22T16:46:58.821Z",
+    "created": "2016-09-22T05:50:23.962Z",
+    "favorite": false,
+    "avatar": "",
+    "company": "Tanpa isi field title",
+    "address": [
+      {
+        "option": "Home",
+        "address": "Jalan Bintara XI RT. 008/013"
+      }
+    ],
+    "phone": [
+      {
+        "option": "Mobile",
+        "number": "82213060660"
+      }
+    ],
+    "email": [
+      {
+        "option": "Personal",
+        "email": "ikhsan.alatsary@hotmail.com"
+      }
+    ],
+    "title": "",
+    "name": "Abdul Fattah Ikhsan"
+  },
+  {
+    "_id": "6",
+    "__v": 0,
+    "updated": "2016-09-22T09:14:35.752Z",
+    "created": "2016-09-21T03:23:32.455Z",
+    "favorite": true,
+    "avatar": "ikhsan1.jpg",
+    "company": "",
+    "address": [
+      {
+        "option": "Home",
+        "address": "Jalan Bintara XI RT. 008/013"
+      }
+    ],
+    "phone": [
+      {
+        "option": "Mobile",
+        "number": "82213060660"
+      }
+    ],
+    "email": [
+      {
+        "option": "Personal",
+        "email": "ikhsan.alatsary@hotmail.com"
+      }
+    ],
+    "title": "TEs",
+    "name": "Abdul Fattah Ikhsan"
+  },
+  {
+    "_id": "7",
+    "__v": 0,
+    "created": "2016-09-22T15:21:22.846Z",
+    "favorite": false,
+    "avatar": "",
+    "company": "Reinger, Schneider and Ernser",
+    "address": [
+      {
+        "option": "Work",
+        "address": "355 Dach Squares"
+      },
+      {
+        "option": "Work",
+        "address": "88100 VonRueden Freeway"
+      }
+    ],
+    "phone": [
+      {
+        "option": "",
+        "number": "538-532-0894 x48399"
+      },
+      {
+        "option": "",
+        "number": "618.605.1270 x29635"
+      }
+    ],
+    "email": [
+      {
+        "option": "Personal",
+        "email": "Gust_Crona@vernie.biz"
+      },
+      {
+        "option": "Personal",
+        "email": "Rodolfo@lauryn.ca"
+      }
+    ],
+    "title": "",
+    "name": "Adolfo Russel"
+  },
+  {
+    "_id": "8",
+    "__v": 0,
+    "updated": "2016-09-22T15:21:26.329Z",
+    "created": "2016-09-22T15:21:25.746Z",
+    "favorite": true,
+    "avatar": "",
+    "company": "Reinger, Schneider and Ernser",
+    "address": [
+      {
+        "option": "Work",
+        "address": "355 Dach Squares"
+      },
+      {
+        "option": "Work",
+        "address": "88100 VonRueden Freeway"
+      }
+    ],
+    "phone": [
+      {
+        "option": "",
+        "number": "538-532-0894 x48399"
+      },
+      {
+        "option": "",
+        "number": "618.605.1270 x29635"
+      }
+    ],
+    "email": [
+      {
+        "option": "Personal",
+        "email": "Gust_Crona@vernie.biz"
+      },
+      {
+        "option": "Personal",
+        "email": "Rodolfo@lauryn.ca"
+      }
+    ],
+    "title": "",
+    "name": "Adolfo Russel"
+  },
+  {
+    "_id": "9",
+    "__v": 0,
+    "created": "2016-09-22T15:28:41.197Z",
+    "favorite": false,
+    "avatar": "",
+    "company": "Hane and Daughters",
+    "address": [
+      {
+        "option": "",
+        "address": "322 Jimmie Corners"
+      },
+      {
+        "option": "",
+        "address": "8849 Lisette Grove"
+      }
+    ],
+    "phone": [
+      {
+        "option": "Work",
+        "number": "(451)863-1518"
+      },
+      {
+        "option": "Work",
+        "number": "782-984-1173 x08217"
+      }
+    ],
+    "email": [
+      {
+        "option": "Other",
+        "email": "Janae.Grimes@karine.tv"
+      },
+      {
+        "option": "Other",
+        "email": "Lavon_Beier@luz.co.uk"
+      }
+    ],
+    "title": "My Big Brother",
+    "name": "Al Hilpert"
+  },
+  {
+    "_id": "10",
+    "__v": 0,
+    "created": "2016-09-24T13:30:15.801Z",
+    "favorite": false,
+    "avatar": "",
+    "company": "Turcotte-Tremblay",
+    "address": [
+      {
+        "option": "",
+        "address": "9232 Cronin Circles"
+      },
+      {
+        "option": "",
+        "address": "439 Koepp Road"
+      }
+    ],
+    "phone": [
+      {
+        "option": "",
+        "number": "276-782-1772"
+      },
+      {
+        "option": "",
+        "number": "595-389-9001 x8788"
+      }
+    ],
+    "email": [
+      {
+        "option": "Work",
+        "email": "Cierra@hubert.io"
+      },
+      {
+        "option": "Work",
+        "email": "Marjolaine@electa.us"
+      }
+    ],
+    "title": "",
+    "name": "Alexys Cummerata II"
+  }
+]
