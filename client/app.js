@@ -1,6 +1,3 @@
-import 'angular-material/angular-material.min.css';
-import 'lf-ng-md-file-input/dist/lf-ng-md-file-input.min.css';
-
 import angular from 'angular';
 import uirouter from '@uirouter/angularjs';
 import angularAnimate from 'angular-animate';
@@ -26,8 +23,7 @@ angular.module('myApp', injection)
   .service('ContactServices', ContactServices)
   .directive('scroll', ScrollDirective);
 
-function trace($trace, $transitions) {
-  $trace.enable('TRANSITION');
+function trace($transitions) {
   // Always on top when state change
   $transitions.onSuccess('*', () => {
     document.body.scrollTop = 0;
@@ -35,4 +31,4 @@ function trace($trace, $transitions) {
   });
 }
 
-trace.$inject = ['$trace', '$transitions'];
+trace.$inject = ['$transitions'];

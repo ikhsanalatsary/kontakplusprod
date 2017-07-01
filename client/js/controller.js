@@ -15,9 +15,9 @@ export default class ContactsCtrl {
     this.search = false;
     this.superhero = [];
     this.contact = {};
-    this.contact.phone = [{ option: 'Mobile' }];
-    this.contact.email = [{ option: 'Personal' }];
-    this.contact.address = [{ option: 'Home' }];
+    this.contact.phone = this.contact.phone || [{ option: 'Mobile' }];
+    this.contact.email = this.contact.email || [{ option: 'Personal' }];
+    this.contact.address = this.contact.address || [{ option: 'Home' }];
     this.uploadLabel = 'Browse';
     this.option = {
       browseIconCls: 'myBrowse',
@@ -78,33 +78,24 @@ export default class ContactsCtrl {
   }
 
   // Submit Contact method
-  addContact() {
-    const { ContactServices, $state, contact, $mdToast, position } = this;
+  saveContact() {
+    const { ContactServices, $state, contact, $mdToast, position, newRecord } = this;
+    let createOrUpdate = 'insert';
+    let createdOrUpdated = 'created';
+    if (!newRecord) {
+      createOrUpdate = 'update';
+      createdOrUpdated = 'updated';
+    }
     if (!angular.isDefined(contact.name)) return;
-    ContactServices.insert(contact)
+    ContactServices[createOrUpdate](contact)
       .then(() => {
         $state.go('contacts.list');
         $mdToast.show(
           $mdToast.simple()
-            .textContent('Successfully created')
+            .textContent(`Successfully ${createdOrUpdated}`)
             .position(position)
             .hideDelay(3000)
           );
-      }, this.handleError);
-  }
-
-  // Update Contact method
-  updateContact() {
-    const { ContactServices, $state, contact, $mdToast, position } = this;
-    ContactServices.update(contact)
-      .then(() => {
-        $mdToast.show(
-          $mdToast.simple()
-            .textContent('Successfully updated')
-            .position(position)
-            .hideDelay(3000)
-          );
-        $state.go('contacts.list');
       }, this.handleError);
   }
 
@@ -126,56 +117,32 @@ export default class ContactsCtrl {
 
   // Add field phone
   addNewPhone() {
-    if (this.newRecord) {
-      this.contact.phone.push({ option: 'Mobile' });
-    } else {
-      this.person.phone.push({ option: 'Mobile' });
-    }
+    this.contact.phone.push({ option: 'Mobile' });
   }
 
   // Remove field phone
   removePhone(item) {
-    if (this.newRecord) {
-      this.contact.phone.splice(item, 1);
-    } else {
-      this.person.phone.splice(item, 1);
-    }
+    this.contact.phone.splice(item, 1);
   }
 
   // Add field email
   addNewEmail() {
-    if (this.newRecord) {
-      this.contact.email.push({ option: 'Personal' });
-    } else {
-      this.person.email.push({ option: 'Personal' });
-    }
+    this.contact.email.push({ option: 'Personal' });
   }
 
   // Remove field email
   removeEmail(item) {
-    if (this.newRecord) {
-      this.contact.email.splice(item, 1);
-    } else {
-      this.person.email.splice(item, 1);
-    }
+    this.contact.email.splice(item, 1);
   }
 
   // Add field address
   addNewAddress() {
-    if (this.newRecord) {
-      this.contact.address.push({ option: 'Home' });
-    } else {
-      this.person.address.push({ option: 'Home' });
-    }
+    this.contact.address.push({ option: 'Home' });
   }
 
   // Remove field address
   removeAddress(item) {
-    if (this.newRecord) {
-      this.contact.address.splice(item, 1);
-    } else {
-      this.person.address.splice(item, 1);
-    }
+    this.contact.address.splice(item, 1);
   }
 
   // Checlist box All contact
