@@ -13,7 +13,8 @@ const config = require('./config');
 const routes = require('./routes');
 
 const corsConfig = {
-  origin: process.env.NODE_ENV === 'production' ? ['https://kontakplus.herokuapp.com', 'https://kontakplus.now.sh'] : '*',
+  // origin: process.env.NODE_ENV === 'production' ? ['https://kontakplus.herokuapp.com', 'https://kontakplus.now.sh'] : '*',
+  origin:  '*',
 };
 
 // Mongodb Connection
