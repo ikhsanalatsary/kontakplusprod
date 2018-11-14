@@ -29,7 +29,7 @@
     "lf-ng-md-file-input": "1.5.2",
     "lodash": "4.17.4",
     "mongoose": "4.11.0",
-    "morgan": "1.8.2",
+    "morgan": "1.9.1",
     "multer": "1.3.0",
     "multer-sharp": "0.2.0"
   },
