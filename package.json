@@ -25,7 +25,7 @@
     "cors": "2.8.3",
     "errorhandler": "1.5.0",
     "express": "4.15.3",
-    "helmet": "3.6.1",
+    "helmet": "3.21.1",
     "lf-ng-md-file-input": "1.5.2",
     "lodash": "4.17.4",
     "mongoose": "4.11.0",
