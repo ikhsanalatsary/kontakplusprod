@@ -20,7 +20,7 @@
     "basic-auth": "1.1.0",
     "body-parser": "1.17.2",
     "btoa": "1.1.2",
-    "checklist-model": "0.11.0",
+    "checklist-model": "1.0.0",
     "compression": "1.6.2",
     "cors": "2.8.3",
     "errorhandler": "1.5.0",
